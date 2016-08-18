@@ -32,9 +32,11 @@
 
 - name: update authorized keys for admin users
   authorized_key:
-    user: '{{item.username}}'
-    key: '{{item.pubkey}}'
-  with_items: admin_users
+    user: "{{ item.0.username }}"
+    key: "{{ item.1 }}"
+  with_subelements:
+    - admin_users
+    - ssh_keys
 
 - name: 'enable sudo with no password for {{admin_users_sudo_group}} group'
   template:

@@ -17,10 +17,13 @@ and remove admin users:
     admin_users:
       - username: joe
         fullname: "Joe User"
-        pubkey: "ssh-rsa ..."
+        ssh_keys:
+          - "ssh-rsa ..."
+          - "ssh-rsa ..."
       - username: jim
         fullname: "Jim User"
-        pubkey: "ssh-rsa ..."
+        ssh_keys:
+          - "ssh-rsa ..."
 
     admin_users_sudo_nopasswd: true
 
