@@ -7,7 +7,7 @@
   group:
     name: '{{ item.username }}'
     state: present
-  with_items: admin_users
+  with_items: '{{ admin_users }}'
 
 - name: create admin users
   user:
@@ -16,26 +16,26 @@
     group: '{{item.username}}'
     groups: '{{admin_users_sudo_group}}'
     append: yes
-  with_items: admin_users
+  with_items: '{{ admin_users }}'
 
 - name: remove admin users
   user:
     name: '{{item}}'
     state: absent
-  with_items: admin_users_to_remove
+  with_items: '{{ admin_users_to_remove }}'
 
 - name: remove admin user groups
   group:
     name: '{{ item.username }}'
     state: absent
-  with_items: admin_users_to_remove
+  with_items: '{{ admin_users_to_remove }}'
 
 - name: update authorized keys for admin users
   authorized_key:
     user: "{{ item.0.username }}"
     key: "{{ item.1 }}"
   with_subelements:
-    - admin_users
+    - '{{ admin_users }}'
     - ssh_keys
 
 - name: 'enable sudo with no password for {{admin_users_sudo_group}} group'
