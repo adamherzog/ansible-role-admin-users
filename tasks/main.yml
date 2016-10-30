@@ -20,7 +20,7 @@
 
 - name: remove admin users
   user:
-    name: '{{item}}'
+    name: '{{ item.username }}'
     state: absent
   with_items: '{{ admin_users_to_remove }}'
 

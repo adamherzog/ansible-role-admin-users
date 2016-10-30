@@ -28,8 +28,8 @@ and remove admin users:
     admin_users_sudo_nopasswd: true
 
     admin_users_to_remove:
-      - bob
-      - fred
+      - username: bob
+      - username: fred
 
 Dependencies
 ------------
